@@ -34,11 +34,10 @@ const convertTimeStampToSeconds = (timestamp) => {
  *  text: 'Chapter 1',
  *  start: 0,
  *  end: 1
- *  percentage: 0
  * }]
  *
  * @param  {string} transcript WebVTT transcript
- * @return {array}             Array of objects with properties: start, end, text, percentage
+ * @return {array}             Array of objects with properties: start, end, text
  *
  */
 const titlesToTimestamps = (transcript = '') => {
@@ -75,11 +74,10 @@ const titlesToTimestamps = (transcript = '') => {
  *  text: 'Chapter 1',
  *  start: 0,
  *  end: 1
- *  percentage: 0
  * }]
  *
  * @param  {string} transcript WebVTT transcript
- * @return {array}             Array of objects with properties: start, end, text, percentage
+ * @return {array}             Array of objects with properties: start, end, text
  *
  */
 const chaptersToTimestamps = (transcript = '') => {
