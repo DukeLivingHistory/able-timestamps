@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Indicator Test</title>
+    <link rel="stylesheet" href="./css/ableplayer.min.css">
+  </head>
+  <body>
+    <h1>Timestamp Indicator Demo</h1>
+    <video
+      id="video"
+      preload="auto"
+      width="480"
+      height="360"
+    >
+      <source
+        type="video/mp4"
+        src="http://ableplayer.github.io/ableplayer/media/wwa.mp4"
+      >
+      <track kind="captions" src="http://ableplayer.github.io/ableplayer/media/wwa_captions_en.vtt" srclang="en" label="English">
+      <track kind="chapters" src="http://ableplayer.github.io/ableplayer/media/wwa_chapters_en.vtt">
+    </video>
+
+
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="./js/js.cookie.min.js"></script>
+    <script src="./js/ableplayer.min.js"></script>
+    <script src="../dist/able-timestamps.min.js"></script>
+    <script>
+      // Example of transcript being fetched asynchronously
+      $.ajax({
+        url: 'http://ableplayer.github.io/ableplayer/media/wwa_chapters_en.vtt',
+        success: function(titles){
+          // Example of options being passed
+          // format: titles will cause the line BEFORE timestamps to be parsed
+          var opts = {
+            dotSize: 20,
+            dotColor: '#56a0d3',
+            format: 'titles'
+          }
+          ableplayerAddDots('#video', titles, opts)
+          // Function returns a promise with .then() and .catch() methods
+          .then(function(player){
+            // Example of using a string
+            var chaptersExample = "00:00:25.000 --> 00:00:27.000\nChapter Example"
+            ableplayerAddDots(player, chaptersExample)
+            .then(function(player){
+              // Example of using an array
+              var arrayExample = [
+                {
+                  text: 'Array Example',
+                  start: 10
+                }
+              ]
+              ableplayerAddDots(player, arrayExample, {
+                format: 'array',
+                dotColor: 'red'
+              })
+            })
+          })
+          .catch(function(err){
+            console.log(err)
+          })
+        }
+      })
+    </script>
+  </body>
+</html>
