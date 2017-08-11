@@ -166,8 +166,9 @@ window.ableplayerAddDots = (player, transcript, opts = {}) => {
   return new Promise((resolve, reject) => {
     try {
       const defaultOpts = {
-        dotColor: '#ffffff',
-        dotSize: 6
+        color:   '#ffffff',
+        width:   6,
+        display: 'line'
       }
 
       const mergedOpts = Object.assign({}, defaultOpts, opts)
@@ -193,25 +194,38 @@ window.ableplayerAddDots = (player, transcript, opts = {}) => {
 
         chapters.map(chapter => {
           const { text, start, end, percentage } = chapter
-          const { dotSize, dotColor } = mergedOpts
+          const { width, color, display } = mergedOpts
 
           const $dot = $(`<div tabindex="0" class="able-indicator" aria-label="Jump to chapter: ${text}"</div>`)
+
+          const styles = {
+            dot: {
+              top:          '50%',
+              marginTop:    width / -2 + 'px',
+              marginLeft:   width / -2 + 'px',
+              height:       width + 'px',
+              borderRadius: '100%',
+            },
+            line: {
+              top: 0,
+              bottom: 0,
+            }
+          }
+
+          const defaultStyles = {
+            position:     'absolute',
+            left:         (start / duration * 100) + '%',
+            width:        width + 'px',
+            background:   color,
+            zIndex:       10000
+          }
+
+          const mergedStyles = Object.assign({}, defaultStyles, styles[display])
 
           $dot.on('click keydown', () => {
             player.seekTo(start)
             player.playMedia()
-          }).css({
-            position:     'absolute',
-            top:          '50%',
-            marginTop:    dotSize / -2 + 'px',
-            marginLeft:   dotSize / -2 + 'px',
-            left:         (start / duration * 100) + '%',
-            width:        dotSize + 'px',
-            height:       dotSize + 'px',
-            borderRadius: '100%',
-            background:   dotColor,
-            zIndex:       10000
-          })
+          }).css(mergedStyles)
 
           $bar.append($dot)
         })

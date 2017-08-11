@@ -33,14 +33,15 @@
           // Example of options being passed
           // format: titles will cause the line BEFORE timestamps to be parsed
           var opts = {
-            dotSize: 20,
-            dotColor: '#56a0d3',
-            format: 'titles'
+            display: 'dot',
+            width:   2,
+            color:   '#56a0d3',
+            format:  'titles'
           }
           ableplayerAddDots('#video', titles, opts)
           // Function returns a promise with .then() and .catch() methods
           .then(function(player){
-            // Example of using a string
+            // Example of using a string and default options
             var chaptersExample = "00:00:25.000 --> 00:00:27.000\nChapter Example"
             ableplayerAddDots(player, chaptersExample)
             .then(function(player){
@@ -53,7 +54,8 @@
               ]
               ableplayerAddDots(player, arrayExample, {
                 format: 'array',
-                dotColor: 'red'
+                color:  'red',
+                width:  20
               })
             })
           })
