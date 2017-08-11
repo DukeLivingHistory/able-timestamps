@@ -196,7 +196,7 @@ window.ableplayerAddDots = (player, transcript, opts = {}) => {
           const { text, start, end, percentage } = chapter
           const { width, color, display } = mergedOpts
 
-          const $dot = $(`<div tabindex="0" class="able-indicator" aria-label="Jump to chapter: ${text}"</div>`)
+          const $dot = $(`<div tabindex="0" class="able-indicator" aria-label="Jump to chapter: ${text}"></div>`)
 
           const styles = {
             dot: {
