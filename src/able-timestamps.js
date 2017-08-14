@@ -187,7 +187,7 @@ window.ableplayerAddDots = (player, transcript, opts = {}) => {
             break
         }
 
-        const duration = player.media.duration
+        const duration = opts.duration || player.media.duration
 
         const $player = player.$ableDiv
         const $bar = $player.find('.able-seekbar')
