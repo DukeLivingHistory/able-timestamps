@@ -1416,6 +1416,10 @@ typedarray@~0.0.5:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
+uglifyjs@^2.4.11:
+  version "2.4.11"
+  resolved "https://registry.yarnpkg.com/uglifyjs/-/uglifyjs-2.4.11.tgz#3440d64e045759589524418eb641c68bb90d113e"
+
 umd@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/umd/-/umd-3.0.1.tgz#8ae556e11011f63c2596708a8837259f01b3d60e"
