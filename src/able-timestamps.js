@@ -194,7 +194,7 @@ window.ableplayerAddDots = (player, transcript, opts = {}) => {
 
         chapters.map(chapter => {
           const { text, start, end, percentage } = chapter
-          const { width, color, display } = mergedOpts
+          const { width, color, display, height } = mergedOpts
 
           const $dot = $(`<div tabindex="0" class="able-indicator" aria-label="Jump to chapter: ${text}"></div>`)
 
@@ -206,9 +206,13 @@ window.ableplayerAddDots = (player, transcript, opts = {}) => {
               height:       width + 'px',
               borderRadius: '100%',
             },
-            line: {
-              top: 0,
-              bottom: 0,
+            line: height ? {
+              top:       '50%',
+              transform: 'translateY(-50%)',
+              height:    height
+            } : {
+              top:    0,
+              bottom: 0
             }
           }
 
